@@ -1,0 +1,5 @@
+report1 -> kogstone을 쓴 11bit multiplier
+
+report2 -> rca를 쓴 11bit multiplier
+
+report3 -> pipeline을 적용한 multiplier

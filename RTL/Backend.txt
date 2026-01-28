@@ -1,0 +1,78 @@
+#STA setup
+mkdir sta_after
+pt_shell
+source rm_setup/lib_define.tcl
+read_verilog results/fp16MAC_HDL.v
+current_design fp16MAC_bw16
+read_sdc results/fp16MAC.sdc
+
+#STA Analysis & Save report - before
+report_timing -from [all_inputs] -max_paths 20 -to [all_registers -data_pins] > sta_before/timing.rpt
+report_timing -from [all_register -clock_pins] -max_paths 20 -to [all_registers -data_pins] >> sta_before/timing.rpt
+report_timing -from [all_registers -clock_pins] -max_paths 20 -to [all_outputs] >> sta_before/timing.rpt
+report_timing -from [all_inputs] -to [all_outputs] -max_paths 20 >> sta_before/timing.rpt
+report_timing -from [all_registers -clock_pins] -to [all_registers -data_pins] -delay_type min >> sta_before/timing.rpt
+report_timing -from [all_registers -clock_pins] -to [all_registers -data_pins] -delay_type max >> sta_before/timing.rpt
+report_timing -transition_time -capacitance -nets -input_pins -from [all_registers -clock_pins] -to [all_registers -data_pins] > sta_before/timing.tran.cap.rpt
+
+#STA Analysis & Save report - after
+report_timing -from [all_inputs] -max_paths 20 -to [all_registers -data_pins] > sta_after/timing.rpt
+report_timing -from [all_register -clock_pins] -max_paths 20 -to [all_registers -data_pins] >> sta_after/timing.rpt
+report_timing -from [all_registers -clock_pins] -max_paths 20 -to [all_outputs] >> sta_after/timing.rpt
+report_timing -from [all_inputs] -to [all_outputs] -max_paths 20 >> sta_after/timing.rpt
+report_timing -from [all_registers -clock_pins] -to [all_registers -data_pins] -delay_type min >> sta_after/timing.rpt
+report_timing -from [all_registers -clock_pins] -to [all_registers -data_pins] -delay_type max >> sta_after/timing.rpt
+report_timing -transition_time -capacitance -nets -input_pins -from [all_registers -clock_pins] -to [all_registers -data_pins] > sta_after/timing.tran.cap.rpt
+
+
+
+#report 결과 확인
+cd sta
+vi timing.rpt
+vi timing.tran.cap.rpt
+
+#Setting Library
+mkdir icc_output
+icc_shell -shared_license -gui
+source rm_setup/lib_define.tcl
+set mw_logic0_net VSS
+set mw_logic1_net VDD
+set_tlu_plus_files -max_tluplus /data/SYNOPSYS/lib/32nm/SAED32_EDK/tech/star_rcxt/saed32nm_1p9m_Cmax.tluplus -min_tluplus /data/SYNOPSYS/lib/32nm/SAED32_EDK/tech/star_rcxt/saed32nm_1p9m_Cmin.tluplus -tech2itf_map /data/SYNOPSYS/lib/32nm/SAED32_EDK/tech/star_rcxt/saed32nm_tf_itf_tluplus.map
+create_mw_lib -technology /data/SYNOPSYS/lib/32nm/SAED32_EDK/tech/milkyway/saed32nm_1p9m_mw.tf -mw_reference_library {/data/SYNOPSYS/lib/32nm/SAED32_EDK/lib/stdcell_rvt/milkyway/saed32nm_rvt_1p9m} fp16MAC.mw
+open_mw_lib fp16MAC.mw
+
+#Load Netlist & SDC File
+read_verilog results/fp16MAC_HDL.v
+uniquify_fp_mw_cel
+link
+read_sdc results/fp16MAC.sdc
+save_mw_cel -as fp16MAC
+
+#Floorplanning
+create_floorplan -core_utilization 0.6 -start_first_row -left_io2core 5.0 -bottom_io2core 5.0 -right_io2core 5.0 -top_io2core 5.0
+derive_pg_connection -power_net VDD -ground_net VSS
+derive_pg_connection -power_net VDD -ground_net VSS -tie
+create_rectangular_rings -nets {VSS} -left_offset 0.5 -left_segment_layer M6 -left_segment_width 1.0 -extend_ll -extend_lh -right_offset 0.5 -right_segment_layer M6 -right_segment_width 1.0 -extend_rl -extend_rh -bottom_offset 0.5 -bottom_segment_layer M7 -bottom_segment_width 1.0 -extend_bl -extend_bh -top_offset 0.5 -top_segment_layer M7 -top_segment_width 1.0 -extend_tl -extend_th
+create_rectangular_rings -nets {VDD} -left_offset 1.8 -left_segment_layer M6 -left_segment_width 1.0 -extend_ll -extend_lh -right_offset 1.8 -right_segment_layer M6 -right_segment_width 1.0 -extend_rl -extend_rh -bottom_offset 1.8 -bottom_segment_layer M7 -bottom_segment_width 1.0 -extend_bl -extend_bh -top_offset 1.8 -top_segment_layer M7 -top_segment_width 1.0 -extend_tl -extend_th
+create_power_strap -nets { VDD } -layer M6 -direction vertical -width 3
+create_power_strap -nets { VSS } -layer M6 -direction vertical -width 3
+save_mw_cel -as fp16MAC
+
+#Placement
+set_buffer_opt_strategy -effort low
+set_tlu_plus_files -max_tluplus /data/SYNOPSYS/lib/32nm/SAED32_EDK/tech/star_rcxt/saed32nm_1p9m_Cmax.tluplus -min_tluplus /data/SYNOPSYS/lib/32nm/SAED32_EDK/tech/star_rcxt/saed32nm_1p9m_Cmin.tluplus -tech2itf_map /data/SYNOPSYS/lib/32nm/SAED32_EDK/tech/star_rcxt/saed32nm_tf_itf_tluplus.map
+
+#save cts
+save_mw_cel -as fp16MAC_cts
+
+#Extraction
+write_parasitics -output icc_output/fp16MAC_extracted.spef -format SPEF
+write_sdf icc_output/fp16MAC_extracted.sdf
+write_sdc icc_output/fp16MAC_extracted.sdc -version 2.1
+write_verilog icc_output/fp16MAC_extracted.v
+report_timing -max_paths 20 -delay max > results/fp16MAC_extracted.setup.rpt
+report_timing -max_paths 20 -delay min > results/fp16MAC_extracted.hold.rpt
+report_power > results/fp16MAC_power.rpt
+report 확인
+cd icc_report
+vi fp16MAC_XXX.rpt

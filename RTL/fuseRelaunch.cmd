@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/Users/wonbi/Documents/GitHub/dld_assigns/float_MAC/tb_fpadder_isim_beh.exe" -prj "C:/Users/wonbi/Documents/GitHub/dld_assigns/float_MAC/tb_fpadder_beh.prj" "work.tb_fpadder" "work.glbl" 

@@ -1,0 +1,49 @@
+module BarrelShifter(In, Out, Shift);
+input [10:0] In;
+input [3:0] Shift; //for Barrel, 16bit need 4muxes by wikipedia
+output [10:0] Out;
+
+wire [10:0] sa0;
+wire [10:0] sa1;
+wire [10:0] sa2;
+wire [10:0] sa3;
+
+genvar i, j, k, l, m, n, o;
+
+generate
+	for(i=0; i<10; i=i+1) begin: loop_1
+		MUX mts0(In[i], In[i+1], Shift[i], sa0[i]);
+	end
+	MUX mts1(In[10], 1'b0, Shift[0], a[10]);
+endgenerate
+
+generate
+	for(j=0; j<9; j=j+1) begin: loop_2
+		MUX mts2(In[j], In[j+2], Shift[1], sa1[j]);
+	end
+	for(k=9; k<11; k=k+1) begin: loop_3
+		MUX mts3(In[k], 1'b0, Shift[k], sa1[k]);
+	end
+endgenerate
+
+generate
+	for(l=0; l<7; l=l+1) begin: loop_4
+		MUX mts4(In[l], In[l+4], Shift[2], sa2[l]);
+	end
+	for(m=7; m<11; m=m+1) begin: loop_5
+		MUX mts5(In[m], 1'b0, Shift[m], sa2[m]);
+	end
+endgenerate
+
+generate
+	for(n=0; n<3; n=n+1) begin: loop_6
+		MUX mts6(In[n], In[n+8], Shift(3), sa3[n]);
+	end
+	for(o=3; o<11; o=o+1) begin: loop_7
+		MUX mts7(In[o], 1'b0, Shift(3), sa3[o]);
+	end
+endgenerate
+
+assign Out = sa3;
+
+endmodule

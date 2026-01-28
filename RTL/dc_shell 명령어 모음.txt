@@ -1,0 +1,39 @@
+define_design_lib WORK -path “work”
+
+source rm_setup/lib_setup.tcl
+
+analyze -library WORK -format verilog ../RTL/fp16multiplier.v
+analyze -library WORK -format verilog ../RTL/fp16adder.v
+analyze -library WORK -format verilog ../RTL/fp16MAC.v
+analyze -library WORK -format verilog ../RTL/kogge_stone_Nbit.v
+analyze -library WORK -format verilog ../RTL/1bit_adder.v
+
+elaborate -architecture verilog -library WORK fp16MAC
+
+check_design
+
+set INPUTPORT [remove_from_collection [all_inputs] [get_ports "CLK RESETn"]]
+
+set OUTPUTPORT [all_outputs]
+
+set_load [load_of saed32rvt_ff1p16vn40c/NBUFFX2_RVT/A] $OUTPUTPORT
+
+set_driving_cell -library saed32rvt_ff1p16vn40c -lib_cell NBUFFX2_RVT -pin Y -no_design_rule $INPUTPORT
+
+set_operating_conditions ff1p16vn40c -library saed32rvt_ff1p16vn40c
+
+create_clock -period 5 -name MAIN_CLOCK [get_ports CLK]
+
+set_clock_uncertainty 0.5 [get_clocks MAIN_CLOCK]
+
+set_input_delay -clock MAIN_CLOCK -max 2.0 [remove_from_collection [all_inputs] CLK]
+
+set_output_delay -clock MAIN_CLOCK -max 2.0 [all_outputs]
+
+set_max_area 0
+
+compile -area_effort medium -map_effort high > reports/compile_wkogg.rpt
+
+report_timing > t5.rpt
+report_area > a5.rpt
+report_power > p5.rpt

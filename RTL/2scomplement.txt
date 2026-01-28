@@ -1,0 +1,24 @@
+module 2scomp(In, Out);
+input [4:0] In;
+output [4:0] Out;
+
+wire [4:0] temp1;
+wire [4:0] temp2;
+
+genvar i, j;
+
+generate
+	for(i=0; i<5; i=i+1) begin: loop_1
+		MUX exp0(1'b1, 1'b0, In[i], temp1[i]);
+	end
+endgenerate
+
+half_adder(temp1[0], 1'b1, Out[0], temp2[0]);
+
+generate
+	for(j=1; j<5; j=j+1) begin: loop_2
+		full_adder(temp1[j], 1'b0, temp2[j-1], Out[j], temp2[j]);
+	end
+endgenerate
+
+endmodule

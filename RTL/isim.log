@@ -1,0 +1,52 @@
+ISim log file
+Running: C:\Users\wonbi\Documents\GitHub\dld_assigns\float_MAC\tb_fpadder_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/Users/wonbi/Documents/GitHub/dld_assigns/float_MAC/tb_fpadder_isim_beh.wdb 
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+WARNING:  For instance cs0/rc0/, width 6 of formal port A is not equal to width 37 of actual constant.
+WARNING:  For instance cs0/rc0/, width 6 of formal port B is not equal to width 37 of actual constant.
+WARNING:  For instance mts0/rc5/, width 12 of formal port A is not equal to width 43 of actual constant.
+WARNING:  For instance mts0/rc5/, width 12 of formal port B is not equal to width 43 of actual constant.
+WARNING:  For instance mts0/rc6/, width 12 of formal port A is not equal to width 43 of actual constant.
+WARNING:  For instance mts0/rc6/, width 12 of formal port B is not equal to width 43 of actual constant.
+WARNING: For instance nor0/\loop_1[0].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[0].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[0].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+WARNING: For instance nor0/\loop_1[1].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[1].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[1].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+WARNING: For instance nor0/\loop_1[2].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[2].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[2].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+WARNING: For instance nor0/\loop_1[3].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[3].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[3].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+WARNING: For instance nor0/\loop_1[4].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[4].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[4].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+WARNING: For instance nor0/\loop_1[5].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[5].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[5].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+WARNING: For instance nor0/\loop_1[6].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[6].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[6].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+WARNING: For instance nor0/\loop_1[7].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[7].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[7].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+WARNING: For instance nor0/\loop_1[8].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[8].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[8].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+WARNING: For instance nor0/\loop_1[9].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[9].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[9].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+WARNING: For instance nor0/\loop_1[10].rc7 /, width 12 of formal port A is not equal to width 5 of actual.
+WARNING:  For instance nor0/\loop_1[10].rc7 /, width 12 of formal port B is not equal to width 5 of actual constant.
+WARNING: For instance nor0/\loop_1[10].rc7 /, width 12 of formal port Sum is not equal to width 5 of actual.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
