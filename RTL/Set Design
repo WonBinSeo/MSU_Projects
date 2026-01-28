@@ -1,4 +1,4 @@
-SYN_TOPO로 이동해서
+Move to SYN_TOPO
 dc_shell
 define_design_lib WORK -path “work”
 source rm_setup/lib_setup.tcl
@@ -31,4 +31,5 @@ report_power -analysis_effort medium > reports/synth_power.rpt
 write_sdc results/fp16MAC.sdc -version 2.1
 write -f ddc -hierarchy -output results/fp16MAC.ddc
 write -hierarchy -format verilog -output results/fp16MAC_HDL.v
+
 
