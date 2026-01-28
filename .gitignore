@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+*.swp
+
+# Simulation outputs (common)
+*.vcd
+*.wlf
+*.vpd
+*.log
+transcript
+work/
+simv*
+csrc/
+INCA_libs/
+xcelium.d/
+verdiLog/
+*.fsdb
+
+# FPGA tool outputs (common)
+*.jou
+*.str
+*.cache/
+*.runs/
+*.ip_user_files/
+*.hw/
+*.gen/
