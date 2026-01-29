@@ -28,7 +28,7 @@ The work emphasizes practical FPGA acceleration concerns rather than theoretical
 ## Target Platform
 
 - **FPGA:** Xilinx Alveo Accelerator Card
-- **Toolchain:** Vivado Design Suite
+- **Toolchain:** Vivado Design Suite, Vitis tool
 - **Host-side Validation:** Python-based testbench
 
 ---
