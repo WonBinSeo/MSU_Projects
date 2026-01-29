@@ -1,0 +1,113 @@
+simulator lang=spectre
+global gnd!
+parameters t0=25n tt=0.050n
+Vdd (vdd! 0) vsource dc=3
+Gnd (gnd! 0) vsource dc=0
+
+v1 (ada0 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v2 (ada1 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v3 (ada2 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v4 (adb0 0) vsource type=pwl wave = [
++ (0*t0) 0
++ ]
+v5 (adb1 0) vsource type=pwl wave = [
++ (0*t0) 0
++ ]
+v6 (adb2 0) vsource type=pwl wave = [
++ (0*t0) 0
++ ]
+v7 (md0 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v8 (md1 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v9 (md2 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v10 (md3 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v11 (md4 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v12 (md5 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v13 (md6 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v14 (md7 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (8*t0) 0
++ (8*t0+tt) 3
++ ]
+v15 (rw 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (4*t0) 0
++ (4*t0+tt) 3
++ (8*t0) 3
++ (8*t0+tt) 0
++ (12*t0) 0
++ (12*t0+tt) 3
++ ]
+v16 (rfen 0) vsource type=pwl wave = [
++ (0*t0) 0
++ (2*t0) 0
++ (2*t0+tt) 3
++ (4*t0) 3
++ (4*t0+tt) 0
++ (6*t0) 0
++ (6*t0+tt) 3
++ (8*t0) 3
++ (8*t0+tt) 0
++ (10*t0) 0
++ (10*t0+tt) 3
++ (12*t0) 3
++ (12*t0+tt) 0
++ (14*t0) 0
++ (14*t0+tt) 3
++ ]
+
+c0 (0 A0) capacitor c=3f
+c1 (0 B0) capacitor c=3f
+c2 (0 A1) capacitor c=3f
+c3 (0 B0) capacitor c=3f
+c4 (0 A2) capacitor c=3f
+c5 (0 B2) capacitor c=3f
+c6 (0 A3) capacitor c=3f
+c7 (0 B3) capacitor c=3f
+c8 (0 A4) capacitor c=3f
+c9 (0 B4) capacitor c=3f
+c10 (0 A5) capacitor c=3f
+c11 (0 B5) capacitor c=3f
+c12 (0 A6) capacitor c=3f
+c13 (0 B6) capacitor c=3f
+c14 (0 A7) capacitor c=3f
+c15 (0 B7) capacitor c=3f
