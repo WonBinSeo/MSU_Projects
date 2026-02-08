@@ -14,5 +14,5 @@
 
 3. Generation & Sampling Timing
    - Sampling: When **posedge clk**
-   - Valid Condition: When **rstn == 0** and **accepted** condition is met
+   - Valid Condition: When **rstn == 1** and **accepted** condition is met
   
