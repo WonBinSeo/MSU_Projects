@@ -22,10 +22,6 @@ This matches the User Guide Day 5 target: “driver/sequencer basic interaction 
 - `fifo_driver.sv` : driver skeleton with basic handshake + minimal DUT driving
 - `fifo_sequencer.sv` : sequencer skeleton (mostly “empty” by design)
 
-Files:
-- `tb/uvm/fifo_driver.sv`
-- `tb/uvm/fifo_sequencer.sv`
-
 ---
 
 ## Key ideas I implemented
